@@ -89,7 +89,7 @@ dev.off()
 
 pdf(file="exercise_11.5_b2.pdf")
 par(mar= c(5, 5.5, 2, 2))
-plot(fitted(m1),sqrt(abs(rstandard(m1))), cex.axis=1.75,cex.lab=1.75,cex.main=1.75,xlim=c(0,300),ylim=c(0,2.5),,xlab="Fitted Values",ylab=expression(paste(sqrt("|Standardized residuals|"))))
+plot(fitted(m1),sqrt(abs(rstandard(m1))), cex.axis=1.75,cex.lab=1.75,cex.main=1.75,xlim=c(0,300),ylim=c(0,2.5),xlab="Fitted Values",ylab=expression(paste(sqrt("|Standardized residuals|"))))
 dev.off()
 
 # histograms for c)
@@ -121,7 +121,18 @@ dev.off()
 
 pdf(file="exercise_11.5_e2.pdf")
 par(mar= c(5, 5.5, 2, 2))
-plot(fitted(m2),sqrt(abs(rstandard(m1))), cex.axis=1.75,cex.lab=1.75,cex.main=1.75,xlim=c(3.5,6.0),ylim=c(0,2.5),,xlab="Fitted Values",ylab=expression(paste(sqrt("|Standardized residuals|"))))
+plot(fitted(m2),sqrt(abs(rstandard(m1))), cex.axis=1.75,cex.lab=1.75,cex.main=1.75,xlim=c(3.5,6.0),ylim=c(0,2.5),xlab="Fitted Values",ylab=expression(paste(sqrt("|Standardized residuals|"))))
+dev.off()
+
+library(concurve)
+# Note: recently package "concurve" was unfortunately recently removed from CRAN
+# you can download the older version here: https://cran.r-project.org/src/contrib/Archive/concurve/
+# in this case you also need to install the dependencies of the package
+# Easier: use the explanation here: https://github.com/zadrafi/concurve and install with package 'remotes':
+# remotes::install_github("zadrafi/concurve@master", dependencies = TRUE)
+s_fun <- curve_gen(m2,'Theatre_ly')
+pdf("exercise_11.5_f.pdf",width=9)
+ggcurve(s_fun[[1]],type="s",  levels = c(0.95), nullvalue=0, title = "", subtitle = "")
 dev.off()
 
 detach(theatre)
@@ -174,7 +185,7 @@ dev.off()
 
 pdf(file="exercise_11.6_g2.pdf")
 par(mar= c(5, 5.5, 2, 2))
-plot(fitted(mps),sqrt(abs(rstandard(mps))), cex.axis=1.75,cex.lab=1.75,cex.main=1.75,xlim=c(20,45),ylim=c(0,2),,xlab="Fitted Values",ylab=expression(paste(sqrt("|Standardized residuals|"))))
+plot(fitted(mps),sqrt(abs(rstandard(mps))), cex.axis=1.75,cex.lab=1.75,cex.main=1.75,xlim=c(20,45),ylim=c(0,2),xlab="Fitted Values",ylab=expression(paste(sqrt("|Standardized residuals|"))))
 dev.off()
 
 # i)

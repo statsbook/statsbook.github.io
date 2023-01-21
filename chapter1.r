@@ -11,7 +11,6 @@ setwd('C:/Users/123456/Documents/Book/Data')
 pizza <- read.csv("pizza_delivery.csv")
 
 # b) 
-fix(pizza)
 View(pizza)
 pizza
 

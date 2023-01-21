@@ -11,7 +11,7 @@ MLP <- function(lambda){
 27*log(lambda) - log(factorial(4)*factorial(3)*factorial(8)*factorial(6)*factorial(6)) - 5*lambda
 }
 
-curve(MLP, from=0, to=10) # simple solution, nicer graph prduced below
+curve(MLP, from=0, to=10) # simple solution, nicer graph produced below
 
 pdf(file="exercise_9.1_b.pdf")
 par(mar= c(5, 5, 2, 2))
@@ -42,5 +42,5 @@ attach(pizza)
 
 timecat     <- cut(time, breaks=c(-1,30,150))
 
-library(epitools)  #cmake sure the library is installed, e.g using install.packages("epitools")
+library(epitools)  #make sure the library is installed, e.g using install.packages("epitools")
 oddsratio(table(timecat,operator), method="wald")

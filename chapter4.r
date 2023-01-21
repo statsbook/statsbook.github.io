@@ -6,11 +6,15 @@ setwd('C:/Users/123456/Documents/Book/Data')
 ################
 
 # c)
+X <- c(-6,-5,2,4,7,15,17,19,13,9,4,0,10,10,14,17,22,24,26,27,22,19,14,12,1,0,5,9,14,20,23,24,21,14,9,4)
+Y <- c(91,89,76,52,42,36,37,39,26,27,68,92,13,21,42,64,79,81,86,92,36,23,13,41,23,82,40,45,39,43,50,95,64,78,9,12)
+Z <- c(rep('Davos',12),rep('Polenca',12),rep('Basel',12))
 
-MISSING (where is it?)
+cor(X,Y)
+cor(X[Z=='Davos'],Y[Z=='Davos'])
+cor(X[Z=='Basel'],Y[Z=='Basel'])
+cor(X[Z=='Polenca'],Y[Z=='Polenca'])
 
-temp <- c(-6,-5,2,4,7,15,17,19,13,9,4,0,10,10,14,17,22,24,26,27,22,19,14,12,1,0,5,9,14,20,23,24,21,14,9,4)
-ho <- c(91,89,76,52,42,36,37,39,26,27,68,92,13,21,42,64,79,81,86,92,36,23,13,41,23,82,40,45,39,43,50,95,64,78,9,12)
 
 #################
 # Exercise 4.8  #
@@ -26,7 +30,7 @@ cor(decathlon)
 cor(na.omit(decathlon))
 
 # and....
-library(corrplot) # nice summary of results with package corrplot(not mentioned in solutions)
+library(corrplot) # nice summary of results with package corrplot (not mentioned in solutions)
 corrplot(cor(na.omit(decathlon)),method="number",col="black",cl.pos="n",tl.col="black")
 
 detach(decathlon)
@@ -68,6 +72,7 @@ pdf(file="exercise_4.9_d.pdf")
 par(mar= c(5, 5, 2, 2))
 plot(time, temperature, pch=19, cex.axis=1.75,cex.lab=1.75,cex=1.5,xlab="Time",ylab="Temperature")
 dev.off()
+
 cor(time,temperature)
 cor(time,temperature,method="spearman")
 

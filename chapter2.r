@@ -14,7 +14,7 @@ pdf(file="exercise_2.1_a.pdf")   # to save graph as a pdf in your working direct
 par(mar= c(5, 5, 2, 2))          # to increase plot margins on the side of the figure to ensure that large labels stay in figure 
 barplot(results2014,names.arg=c('ANC',"DA","EFF","IFP","COPE","Others"),col=gray.colors(6),
                     ylim=c(0,0.7),xlab="Parties",ylab="Votes (%)",
-                    ,cex.axis=1.75,lwd=3,cex.lab=1.75,cex.names=1.25)       # to learn more about these options type ?par
+                    cex.axis=1.75,lwd=3,cex.lab=1.75,cex.names=1.25)       # to learn more about these options type ?par
 dev.off()
 
 
@@ -22,13 +22,13 @@ dev.off()
 # b)
 difference <- results2014-results2009
 barplot(difference)           # does not look nice, improve with options
-                              #(e.g. range of y-axis)
+                              # (e.g. range of y-axis)
 
 pdf(file="exercise_2.1_b.pdf")
 par(mar= c(5, 5, 2, 2))
 barplot(difference,names.arg=c("ANC","DA","EFF","IFP","COPE","Others"),col=gray.colors(6),
                     ylim=c(-0.1,0.1),xlab="Parties",ylab="Difference",
-                    ,cex.axis=1.75,lwd=3,cex.lab=1.75,cex.names=1.25)
+                    cex.axis=1.75,lwd=3,cex.lab=1.75,cex.names=1.25)
 dev.off()
 
 
@@ -94,7 +94,7 @@ dev.off()
 # Exercise 2.6 #
 ################
 
-library(ggplot2)    # Browse http://docs.ggplot2.org/ for a comprehensive summary
+library(ggplot2)    # Browse https://ggplot2.tidyverse.org/reference/ for a comprehensive summary
 pizza <- read.csv("pizza_delivery.csv")
 attach(pizza)
 
@@ -120,7 +120,9 @@ dev.off()
 
 
 # d)  [the "theme" option is to improve labelling and font size, not necessarily needed]
-qplot(driver,data=pizza,aes="bar")
+qplot(driver,data=pizza,aes="bar") # this is the solution aligned with the first edition. 
+                                   # It still works and easier to understand in terms of base R syntax
+                                   # It is now however encouraged to use only "ggplot" and not "qplot" anymore   
 
 pdf(file="exercise_2.6_d.pdf",width=11)
 p3 <- qplot(driver,data=pizza,aes=("bar"),fill=day)
@@ -128,7 +130,12 @@ p4 <- p3 + scale_fill_grey() +theme_bw() + scale_y_continuous("Number of deliver
 plot(p4+ theme(axis.title.x = element_text(size=20),axis.title.y = element_text(size=20), legend.title =  element_text(size=18, hjust = 0), legend.text =  element_text(size=18), axis.text.x = element_text(size=16), axis.text.y = element_text(size=16)))
 dev.off()
 
-
+# d) more current solution
+pdf(file="exercise_2.6_d_update.pdf",width=11)
+p3 <-  ggplot(data=pizza,aes(x=driver)) + geom_bar(aes(fill=day))
+p4 <- p3 + scale_fill_grey() +theme_bw() + scale_y_continuous("Number of deliveries") + scale_x_discrete("Driver") 
+plot(p4+ theme(axis.title.x = element_text(size=20),axis.title.y = element_text(size=20), legend.title =  element_text(size=18, hjust = 0), legend.text =  element_text(size=18), axis.text.x = element_text(size=16), axis.text.y = element_text(size=16)))
+dev.off()
 
 
 
